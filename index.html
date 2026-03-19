@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<style>
+body {
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg,#ff5f6d,#ffc371);
+  color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+.slide {
+  display:none;
+  height:100vh;
+  padding:40px;
+}
+
+.active {
+  display:block;
+}
+
+.text {
+  font-size:32px;
+  line-height:1.6;
+  max-width:800px;
+  margin:auto;
+}
+
+.big {
+  font-size:60px;
+  font-weight:bold;
+}
+
+button {
+  margin-top:30px;
+  padding:12px 25px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:#ff4d6d;
+  cursor:pointer;
+}
+
+/* Hearts */
+.heart {
+  position:absolute;
+  color:red;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float {
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+
+/* Petals */
+.petal {
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:pink;
+  border-radius:50%;
+  animation:fall 8s linear infinite;
+}
+
+@keyframes fall {
+  0%{transform:translateY(-10vh);}
+  100%{transform:translateY(100vh);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="slide active">
+  <div id="t1" class="text"></div>
+  <button onclick="next()">Next ❤️</button>
+</div>
+
+<div class="slide">
+  <div id="t2" class="text"></div>
+  <button onclick="next()">Next ❤️</button>
+</div>
+
+<div class="slide">
+  <div id="t3" class="text"></div>
+  <button onclick="next()">Next ❤️</button>
+</div>
+
+<div class="slide">
+  <div id="t4" class="text big"></div>
+  <button onclick="next()">Next ❤️</button>
+</div>
+
+<div class="slide">
+  <div class="big">I LOVE YOU ❤️</div>
+</div>
+
+<script>
+let slides=document.querySelectorAll(".slide");
+let i=0;
+
+function next(){
+  slides[i].classList.remove("active");
+  i++;
+  slides[i].classList.add("active");
+}
+
+/* Typing multi-line */
+function type(id, text, speed=30){
+  let index=0;
+  function write(){
+    if(index<text.length){
+      document.getElementById(id).innerHTML+=text.charAt(index);
+      index++;
+      setTimeout(write,speed);
+    }
+  }
+  write();
+}
+
+/* CONTENT (EMOTIONAL) */
+
+type("t1",
+"Suniye...\n\nMujhe aapse kuch kehna hai...\n\nMain janta hoon maine jo kaha... wo sab bahut galat tha...\nAur shayad us waqt main gusse me tha...\n\nLekin jo bhi maine bola... uska dard mujhe ab samajh aa raha hai..."
+);
+
+setTimeout(()=>type("t2",
+"Aap jaante ho?\n\nMaine aapko hurt kiya...\nAur wo bhi bina soche samjhe...\n\nAap itne ache ho...\nAur maine hi aapko rulaya...\n\nMain sach me bohot regret kar raha hoon..."
+),4000);
+
+setTimeout(()=>type("t3",
+"Aap mere liye important ho...\n\nItne ki main shayad words me bata bhi nahi sakta...\n\nAur maine hi aapke character pe doubt kiya...\n\nYe meri sabse badi galti thi...\n\nMain khud ko maaf nahi kar paa raha..."
+),8000);
+
+/* SORRY PAGE */
+setTimeout(()=>type("t4",
+"SORRY SORRY SORRY SORRY SORRY\nSORRY SORRY SORRY SORRY\nSORRY SORRY SORRY\nSORRY SORRY\nSORRY\n\nPLEASE MUJHE MAAF KAR DIJIYE..."
+,20),12000);
+
+/* hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.style.left=Math.random()*100+"vw";
+h.innerHTML="❤️";
+h.style.fontSize=(20+Math.random()*20)+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},300);
+
+/* petals */
+setInterval(()=>{
+let p=document.createElement("div");
+p.className="petal";
+p.style.left=Math.random()*100+"vw";
+document.body.appendChild(p);
+setTimeout(()=>p.remove(),8000);
+},400);
+
+</script>
+
+</body>
+</html>
